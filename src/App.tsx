@@ -4,6 +4,7 @@ import { store } from "./store/storeReducer";
 import ToDo from "./components/ToDo";
 import CatList from "./components/CatsList";
 import CatListQuery from "./components/CatsListQuery";
+import CatsSagaComponent from "./components/CatsSagaComponent";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
           <CatList/>
           <hr/>
           <CatListQuery/>
+          <hr/>
+          <CatsSagaComponent/>
         </Provider>
       </section>
     </>
