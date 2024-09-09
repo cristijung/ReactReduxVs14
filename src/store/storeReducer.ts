@@ -2,11 +2,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterSlice from "../slice/counterSlice";
 import todoSlice from "../slice/todoSlice";
+import catSlice from "../slice/catSlice";
 
 export const store = configureStore({
     reducer: {
         counter: counterSlice,
         todos: todoSlice,
+        cats: catSlice, 
     },
 });
 
