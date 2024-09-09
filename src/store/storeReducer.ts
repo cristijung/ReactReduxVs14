@@ -3,13 +3,17 @@ import { configureStore } from "@reduxjs/toolkit";
 import counterSlice from "../slice/counterSlice";
 import todoSlice from "../slice/todoSlice";
 import catSlice from "../slice/catSlice";
+import { catsApi } from "../services/catsApi";
 
 export const store = configureStore({
     reducer: {
         counter: counterSlice,
         todos: todoSlice,
-        cats: catSlice, 
+        cats: catSlice,
+        [catsApi.reducerPath]: catsApi.reducer, 
     },
+    middleware: (getDefaultMiddleware) => 
+        getDefaultMiddleware().concat(catsApi.middleware),
 });
 
 //define um tipo estado raiz, inicial na aplicação
