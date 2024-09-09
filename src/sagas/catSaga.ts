@@ -20,7 +20,7 @@ function* fetchCat(): Generator<StrictEffect, void, any> {
       const errorMessage = error.message; 
       yield put(fetchCatFailure(errorMessage));
     } else {
-      // trara os outros tipos de erros, se necessário
+      //tratara os outros tipos de erros, se necessário
       yield put(fetchCatFailure('Ocorreu um erro desconhecido.'));
     }
   }
