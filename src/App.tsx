@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/storeReducer";
 import ToDo from "./components/ToDo";
 import CatList from "./components/CatsList";
+import CatsListQuery from "./components/CatListQuery";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <ToDo />
           <hr/>
           <CatList/>
+          <CatsListQuery/>
         </Provider>
       </section>
     </>
