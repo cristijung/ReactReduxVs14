@@ -9,8 +9,9 @@ import {
   fetchCatFailure,
   FETCH_CAT_REQUEST 
 } from '../actions/catActions';
-import { StrictEffect } from 'redux-saga/effects';
+import { StrictEffect } from 'redux-saga/effects'; //tipagem dos efeitos do Saga
 
+//função geradora
 function* fetchCat(): Generator<StrictEffect, void, any> {
   try {
     const response = yield call(axios.get, 'https://api.thecatapi.com/v1/images/search');
@@ -26,6 +27,7 @@ function* fetchCat(): Generator<StrictEffect, void, any> {
   }
 }
 
+//outra função geradora
 function* catSaga(): Generator<StrictEffect, void, any> {
   yield takeLatest(FETCH_CAT_REQUEST, fetchCat);
 }
