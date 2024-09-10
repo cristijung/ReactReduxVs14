@@ -1,9 +1,12 @@
+import { configureStore } from '@reduxjs/toolkit';
+import createSagaMiddleware from 'redux-saga';
+import counterSlice from '../slice/counterSlice';
+import todoSlice from '../slice/todoSlice';
+import catSlice from '../slice/catSlice';
+import { catsApi } from '../services/catsApi';
+import rootSaga from '../sagas/rootSaga'; 
 
-import { configureStore } from "@reduxjs/toolkit";
-import counterSlice from "../slice/counterSlice";
-import todoSlice from "../slice/todoSlice";
-import catSlice from "../slice/catSlice";
-import { catsApi } from "../services/catsApi";
+const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
     reducer: {
@@ -13,14 +16,13 @@ export const store = configureStore({
         [catsApi.reducerPath]: catsApi.reducer, 
     },
     middleware: (getDefaultMiddleware) => 
-        getDefaultMiddleware().concat(catsApi.middleware),
+        getDefaultMiddleware().concat(catsApi.middleware, sagaMiddleware),
 });
 
-//define um tipo estado raiz, inicial na aplicação
-//ele usa o retorno do tipo da função store.getState
-//recebe sempre o estado inicial da aplicação
+sagaMiddleware.run(rootSaga); 
+
+// Definição do tipo RootState
 export type RootState = ReturnType<typeof store.getState>;
-//esta exportação é usada para despachar as ações para a store
-//e depois atualizar o estado do componente
-//e depois re-renderizar o component na view
+
+// Definição do tipo AppDispatch
 export type AppDispatch = typeof store.dispatch;

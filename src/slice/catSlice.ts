@@ -7,15 +7,20 @@ interface Cat {
 }
 
 interface CatState {
-  cats: Cat[];
+  cats: Cat[]; 
   status: 'idle' | 'loading' | 'succeeeded' | 'failed';
   error: string | null;
+  loading: boolean; 
+  catData: Cat | null;
+  
 };
 
 const initialState: CatState = {
   cats: [],
   status: 'idle',
   error: null,
+  loading: false, 
+  catData: null, 
 };
 
 export const fetchCats = createAsyncThunk('cats/fetchCats', async () => {
